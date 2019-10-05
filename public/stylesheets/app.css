@@ -1,0 +1,50 @@
+i.icon{
+    font-size: 2em;
+}
+
+/* body{
+    background-color: black;
+} */
+.form.ui{
+    margin: 20px;
+ }
+
+.delete{
+    display: inline;
+}
+
+.ext{
+    padding: 3px;
+    width: 100%;
+    word-break: break-all;
+    word-wrap: break-word
+}
+
+.img{
+    float: left;
+    height: 120px;
+    margin-right: 10px;
+    width: 150px;
+}
+.index-contents{
+    margin: auto;
+    width: 900px;
+    height: 150px;
+    border: 1px solid gray;
+    padding: 15px;
+}
+.thumbnail img {
+    width: 80%;
+}
+
+.thumbnail {
+    padding: 20px;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+#delete-form {
+    display: inline;
+}

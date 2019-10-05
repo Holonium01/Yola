@@ -1,0 +1,24 @@
+ <% include ../partials/header%>
+<div class="container">
+        <div class="row">
+            <h1 style="text-align: center">Create a post</h1>
+            <div style="width: 60%; margin: 25px auto;">
+                <form action="/blog" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="title" placeholder="Title" required>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="image" placeholder="post image url (optional)">
+                    </div>
+                    <div class="form-group">
+                        <textarea type="text" name="content" id="" cols="94" rows="15" placeholder="   content" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+                <a href="/blog">Go Back</a>
+            </div>
+        </div>
+    </div>
+    <% include ../partials/footer %>

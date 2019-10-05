@@ -1,0 +1,63 @@
+
+<% include ../partials/header %>
+<div class="container">
+        <div style="width: 80%; margin:0 auto;">
+    <div class="row">
+        <div class="col-md-10">
+                <h2><%=blog.title%></h2>
+                <p>
+                        <em>By Anonymous</em>
+                    </p>
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%= blog.image %>">
+                <div class="caption-full">
+                    <h4><a><%=blog.title%></a></h4>
+                    <p class="ext"><%= blog.content %></p>
+                    
+                    <% if(currentUser && blog.author.id.equals(currentUser._id)){ %>
+                        <a class="btn btn-xs btn-warning" href="/blog/<%= blog._id %>/edit">Edit</a>
+                        <form id="delete-form" action="/blog/<%= blog._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-xs btn-danger">Delete</button>
+                        </form>
+                    <% }%>
+                </div>
+            </div>
+            <div class="well">
+                <% if (currentUser && blog.author.id.equals(currentUser._id)) { %>
+                <div class="text-left">
+                    <a class="btn btn-success" >Comments</a>
+                </div>
+                <% } else { %>
+                
+                <div class="text-right">
+                        <a class="btn btn-success" href="/blog/<%= blog._id %>/comment/new">Reply</a>
+                    </div>
+                <% } %>
+                <hr>
+                <% blog.comment.forEach(function(comment){ %>
+                    <% if(currentUser && (blog.author.id.equals(currentUser._id) || comment.name.id.equals(currentUser._id))) {%>
+                    <div class="row">
+                        <div class="col-md-12">
+                                    <strong><%= comment.name.username %></strong>
+                                    <p>
+                                        <%= comment.text %> 
+                                    </p>
+                                    <% if(currentUser && comment.name.id.equals(currentUser._id)){ %>
+                                    <a class="btn btn-xs btn-warning" 
+                                    href="/blog/<%=blog._id %>/comment/<%=comment._id %>/edit">Edit</a>
+                                    <form id="delete-form" action="/blog/<%=blog._id %>/comment/<%=comment._id %>?_method=DELETE" method="POST">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                    </form>
+                                    <% } %>
+                         </div>
+                    </div>
+                    <% } %>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+    <a href="/blog">Go back</a>
+    </div>
+</div>
+
+<% include ../partials/footer %>

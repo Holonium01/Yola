@@ -1,0 +1,30 @@
+
+<% include ./partials/header %>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">Sign up!</h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="email" name="email" placeholder="email" required>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="name"  name="username" placeholder="pick a unique username">
+                </div>
+                <div class="form-group">
+                <input class="form-control"  type="password"   id="password" name="password" placeholder="password">
+                </div>
+                <div class="form-group">
+                <input class="form-control" type="password" id="confirmPassword" name="rpassword" placeholder="confirm password" required>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit" id="submit">Submit!</button>
+                </div>
+            </form>
+            <a href="/login">Log in</a>
+        </div>
+    </div>
+    <script type="text/javascript" src="../public/assets/app.js"></script>
+</div>
+<% include ./partials/footer %>
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ishoro.ng</title>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/stylesheets/app.css">
+    </head>
+    <body>
+        <nav>
+           <div class="container">
+                <a class="navbar-brand" href="/">Ishoro.ng</a><i class="fad fa-dice-d4"></i>
+            <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar">
+                            <li><a href="/about">The Movement</a></li>
+                            <li><a href="/blog/new">Get Started</a></li>
+                      </ul>
+              <ul class="nav navbar-nav navbar-right">
+                <% if(!currentUser){ %>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Sign Up</a></li>
+                <% } else { %>
+                    <li><a href="#">Signed In As <%= currentUser.username %></a></li>
+                    <li><a href="/logout">Logout</a></li>
+                <% } %>
+              </ul>
+            </div>
+           </div>
+        </nav>
+
+        <div class="container">
+            <% if(error && error.length > 0){ %>
+                <div class="alert alert-danger" role="alert">
+                    <%= error %>
+                </div>
+            <% } %>
+            <% if(success && success.length > 0){ %>
+                <div class="alert alert-success" role="alert">
+                    <%= success %>
+                </div>
+            <% } %>
+        </div>
+         

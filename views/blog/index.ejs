@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1>O jewa ke eng?</h1>
+            <% if(!currentUser){ %>
+                <p>
+                    <a class="btn btn-primary btn-large" href="/blog/new">Join the movement</a>
+                </p>
+            <% } else { %>
+                <p>
+                    <a class="btn btn-primary btn-large" href="/blog/new">Make a post</a>
+                </p>
+            <% } %>
+        </div>
+    </header>
+    <% blogs.forEach(function(blog){ %>
+        <div class="index-contents">
+            <div class="card mb-3">
+                    <img src="<%= blog.image %>" class="img" alt="...">     
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="/blog/<%= blog._id %>"><%=blog.title%></a></h5>
+                        <p class="card-text"><%- blog.content.substring(0,150) %>....</p>
+                        <p class="card-text"><small class="text-muted"><%= blog.created.toDateString() %></small><br>
+                        <a  class="card-link" href="/blog/<%= blog._id %>">Read more</a>
+                        </p>
+                    </div>
+                    
+            </div>
+        </div>
+    <% }) %>  
+</div>
+
+<% include ../partials/footer %>
