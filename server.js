@@ -1,6 +1,5 @@
 const express                 = require("express"),
     bodyParser              = require("body-parser"),
-    mongoose                = require("mongoose"),
     methodOverride          = require("method-override"),
     expressSanitizer        = require("express-sanitizer"),
     seedDB                  = require("./seed"),
@@ -12,6 +11,7 @@ const express                 = require("express"),
     expressSession          = require("express-session"),
     cookieParser            = require("cookie-parser"),
     app                     = express(),
+    prod                    = require("./db/models/production")(app);
 
     require('dotenv').config()
 
@@ -19,8 +19,8 @@ const express                 = require("express"),
 const commentRoutes    = require("./routes/comment"),
     blogRoutes = require("./routes/blog"),
     indexRoutes      = require("./routes/index"),
-    { mongoose } = require('./db/mongoose'),
-    prod     =      require(".db/models/prod")(app);
+    { mongoose } = require('./db/mongoose');
+   
 
 //App config  
 app.set("view engine", "ejs");
