@@ -10,9 +10,8 @@ const express                 = require("express"),
     expressSession          = require("express-session"),
     cookieParser            = require("cookie-parser"),
     app                     = express(),
-    prod                    = require("./db/models/production")(app);
-
-    require('dotenv').config()
+    prod                    = require("./db/models/production")(app),
+    env                     = require('dotenv').config();
 
 //requring routes
 const commentRoutes    = require("./routes/comment"),
