@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-let mongodbUrl = process.env.DATABASEURL || 'mongodb://localhost:27017/gist_app';
+let mongodbUrl = process.env.DATABASEURL;
 mongoose.connect(mongodbUrl, {
         useNewUrlParser: true,
         useCreateIndex: true,
