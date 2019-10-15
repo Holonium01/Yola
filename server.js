@@ -1,4 +1,4 @@
-var express                 = require("express"),
+const express                 = require("express"),
     bodyParser              = require("body-parser"),
     mongoose                = require("mongoose"),
     methodOverride          = require("method-override"),
@@ -16,10 +16,11 @@ var express                 = require("express"),
     require('dotenv').config()
 
 //requring routes
-var commentRoutes    = require("./routes/comment"),
+const commentRoutes    = require("./routes/comment"),
     blogRoutes = require("./routes/blog"),
     indexRoutes      = require("./routes/index"),
-    { mongoose } = require('./db/mongoose');
+    { mongoose } = require('./db/mongoose'),
+    prod     =      require(".db/models/prod")(app);
 
 //App config  
 app.set("view engine", "ejs");
