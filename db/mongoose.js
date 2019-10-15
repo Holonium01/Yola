@@ -5,8 +5,7 @@ mongoose.connect(mongodbUrl, {
         useNewUrlParser: true,
         useCreateIndex: true,
         useFindAndModify: false,
-        // Use ssl connection (needs to have a mongod server with ssl support). Default is false. Change to true when using ssl
-        ssl: false,
+        useUnifiedTopology: true,
         // sets how many times to try reconnecting
         reconnectTries: Number.MAX_VALUE,
         // sets the delay between every retry (milliseconds)

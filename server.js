@@ -78,5 +78,5 @@ process.on('uncaughtException', (err) => {
 
 let PORT = app.get(process.env.PORT) || 3000;
 app.listen(PORT, () => {
-    console.log("Gist server running")
+    console.log(process.env.WELCOME_MESSAGE)
 });
