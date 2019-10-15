@@ -74,7 +74,7 @@ process.on('uncaughtException', (err) => {
     process.exit(99)
 })
 
-let PORT = app.get(process.env.PORT) || 3000;
+let PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(process.env.WELCOME_MESSAGE)
 });
