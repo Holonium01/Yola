@@ -10,7 +10,6 @@ const express                 = require("express"),
     expressSession          = require("express-session"),
     cookieParser            = require("cookie-parser"),
     app                     = express(),
-    mongoose                = require('mongoose'),
     prod                    = require("./db/models/production")(app);
     
 
@@ -19,8 +18,8 @@ const express                 = require("express"),
 //requring routes
 const commentRoutes    = require("./routes/comment"),
     blogRoutes = require("./routes/blog"),
-    indexRoutes      = require("./routes/index");
-    // mongoose = require('./db/mongoose');
+    indexRoutes      = require("./routes/index"),
+    mongoose = require('./db/mongoose');
    
 
 //App config  
@@ -39,7 +38,7 @@ app.use(expressSession({
     saveUninitialized: false
 }));
 
-const MONGODB_URI =process.env.DATABASEURL;
+
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -77,11 +76,7 @@ process.on('uncaughtException', (err) => {
     process.exit(99)
 })
 
-mongoose
-  .connect(MONGODB_URI)
-  .then(result => {
-    app.listen(process.env.PORT || 3000);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+let PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(process.env.WELCOME_MESSAGE)
+});
