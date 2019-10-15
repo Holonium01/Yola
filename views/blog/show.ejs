@@ -38,7 +38,11 @@
                     <% if(currentUser && (blog.author.id.equals(currentUser._id) || comment.name.id.equals(currentUser._id))) {%>
                     <div class="row">
                         <div class="col-md-12">
+                                <% if(currentUser && blog.author.id.equals(currentUser._id)) {%>
                                     <strong>Anon </strong>
+                                <% } else { %>
+                                    <strong><%=comment.name.username%> </strong>
+                                <% } %>
                                     <p>
                                         <%= comment.text %> 
                                     </p>
