@@ -2,9 +2,9 @@ i.icon{
     font-size: 2em;
 }
 
-/* body{
-    background-color: black;
-} */
+body{
+    background-color: white;
+}
 .form.ui{
     margin: 20px;
  }
@@ -22,9 +22,9 @@ i.icon{
 
 .img{
     float: left;
-    height: 120px;
+    height: 150px;
     margin-right: 10px;
-    width: 150px;
+    width: 270px;
 }
 .index-contents{
     margin: auto;
@@ -47,4 +47,10 @@ i.icon{
 
 #delete-form {
     display: inline;
+}
+
+hr {
+    height: 0px;
+    border: none;
+    border-top: 1px solid green;
 }

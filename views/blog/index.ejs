@@ -14,21 +14,44 @@
             <% } %>
         </div>
     </header>
-    <% blogs.forEach(function(blog){ %>
-        <div class="index-contents">
-            <div class="card mb-3">
-                    <img src="<%= blog.image %>" class="img" alt="...">     
-                    <div class="card-body">
-                        <h5 class="card-title"><a href="/blog/<%= blog._id %>"><%=blog.title%></a></h5>
-                        <p class="card-text"><%- blog.content.substring(0,150) %>....</p>
-                        <p class="card-text"><small class="text-muted"><%= blog.created.toDateString() %></small><br>
-                        <a  class="card-link" href="/blog/<%= blog._id %>">Read more</a>
-                        </p>
-                    </div>
-                    
+
+    <div class="bloder-content">
+    <% blogs.forEach(function(blog){ %>						
+        <div class="bloger-grid">						
+            <div class="blog-img">
+                <img src="<%= blog.image %>" class="img">
             </div>
+            <div class="bloger-content">
+                <h5><a href="/blog/<%= blog._id %>"><%=blog.title%></a></h5>
+                <p><%- blog.content.substring(0,200) %>...</p>
+                <ul>
+                    <li><%= blog.created.toDateString() %></li>
+                    <li><a href="/blog/<%= blog._id %>"><span>read more</span></a></li>
+                </ul>
+            </div>
+            <div class="clear"> </div>
         </div>
-    <% }) %>  
-</div>
+    <% }) %> 
+    <div class="clear"> </div>
+			<!-- End-content-gallery-->
+			<!-- DC Pagination:C9 Start -->
+			<div class="wrap">
+	<!-- DC Pagination:A3 Start -->
+						<ul class="dc_pagination dc_paginationA dc_paginationA03">
+						  <li><a href="#" class="first">First</a></li>
+						  <li><a href="#" class="previous">Previous</a></li>
+						  <li><a href="#">1</a></li>
+						  <li><a href="#">2</a></li>
+						  <li><a href="#" class="current">3</a></li>
+						  <li><a href="#">4</a></li>
+						  <li><a href="#">5</a></li>
+						  <li><a href="#" class="next">Next</a></li>
+						  <li><a href="#" class="last">Last</a></li>
+						</ul>
+							<!-- DC Pagination:A3 End -->
+	    		<div class="clear"> </div>
+	<!-- DC Pagination:C9 End -->
+		</div>
+    </div>
 
 <% include ../partials/footer %>

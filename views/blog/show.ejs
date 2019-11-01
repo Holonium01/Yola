@@ -4,14 +4,11 @@
         <div style="width: 80%; margin:0 auto;">
     <div class="row">
         <div class="col-md-10">
-                <h2><%=blog.title%></h2>
-                <p>
-                        <em>By Anonymous</em>
-                    </p>
             <div class="thumbnail">
-                <img class="img-responsive" src="<%= blog.image %>">
+                <img class="img-responsive" src="<%= blog.image %>" alt="">
                 <div class="caption-full">
                     <h4><a><%=blog.title%></a></h4>
+                   
                     <p class="ext"><%= blog.content %></p>
                     
                     <% if(currentUser && blog.author.id.equals(currentUser._id)){ %>
@@ -39,9 +36,9 @@
                     <div class="row">
                         <div class="col-md-12">
                                 <% if(currentUser && blog.author.id.equals(currentUser._id)) {%>
-                                    <strong>Anon </strong>
+                                    <strong>Anon : </strong>
                                 <% } else { %>
-                                    <strong><%=comment.name.username%> </strong>
+                                    <em>me :</em>
                                 <% } %>
                                     <p>
                                         <%= comment.text %> 
@@ -53,6 +50,7 @@
                                         <input type="submit" class="btn btn-xs btn-danger" value="Delete">
                                     </form>
                                     <% } %>
+                                    <hr>
                          </div>
                     </div>
                     <% } %>

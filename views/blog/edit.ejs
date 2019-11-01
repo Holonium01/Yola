@@ -1,26 +1,31 @@
 
 <% include ../partials/header %>
-<div class="container">
-    <div class="row">
-        <h1 style="text-align: center">Edit <%= blog.name %></h1>
-        <div style="width: 60%; margin: 25px auto;">
-            <form action="/blog/<%=blog._id%>?_method=PUT" method="POST">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="blog[title]" value="<%= blog.title %>" required>
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="text" name="blog[image]" value="<%= blog.image %>">
-                </div>
-                <div class="form-group">
-                    <textarea name="blog[content]" id="" cols="94" rows="10" required><%= blog.content%></textarea required>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-            <a href="/blogs">Go Back</a>
-        </div>
+
+<div class="wrap">
+        <div style="border:none;" class="about">  
+        <div class="contact-form">
+            <h4>Edit Post</h4>
+        <form action="/blog/<%=blog._id%>?_method=PUT" method="POST">
+            <div>
+                <span><input type="text"   name="blog[title]"   value="<%= blog.title %>" required></span>
+            </div>
+            <div>
+                <span><input type="text"  name="blog[name]"  value="<%= blog.image %>"  ></span>
+            </div>
+            <div>
+                <span><textarea name="blog[title]"  placeholder="content" required> <%= blog.content%> </textarea></span>
+            </div>
+            <div>
+                <span><input type="submit" value="Submit"></span>
+            </div>
+        </form>
+        <br>
+        <a href="/blog">Go Back</a>
     </div>
-</div>
+    </div>
+    <div class="clear"></div>
+    <br>
+    <br>
+    <br>
 <% include ../partials/footer %>
 
