@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-let mongodbUrl = 'mongodb://localhost:27017/gisted_app';
-mongoose.connect(mongodbUrl, {
+let mongodbUrl = process.env.DATABASEURL || 'mongodb://localhost:27017/gisted_app';
+mongoose.connect(mongodbUrl, { 
         useNewUrlParser: true,
         useCreateIndex: true,
         useFindAndModify: false,
