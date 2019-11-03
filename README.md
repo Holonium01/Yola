@@ -4,6 +4,11 @@ A faceless social media
 ## Core Features
 * User Anonimity
 * CRUD
+* User Authentication
+
+## Quick Access
+
+visit: https://yola-ng.herokuapp.com/blog
 
 ## Installation
 
