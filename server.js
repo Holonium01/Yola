@@ -10,6 +10,7 @@ const express                 = require("express"),
     expressSession          = require("express-session"),
     cookieParser            = require("cookie-parser"),
     app                     = express(),
+    multer                  = require('multer'),
     prod                    = require("./db/models/production")(app);
     
 
@@ -20,12 +21,33 @@ const commentRoutes    = require("./routes/comment"),
     blogRoutes = require("./routes/blog"),
     indexRoutes      = require("./routes/index"),
     mongoose = require('./db/mongoose');
-   
 
+//setting up file storage
+const fileStorage = multer.diskStorage({
+    destination:(req, file, cb) => {
+        cb(null, 'image')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.filename + '-' + file.originalname)
+    }
+});
+const fileFilter = (req, file, cb) => {
+    if (
+      file.mimetype === 'image/png' ||
+      file.mimetype === 'image/jpg' ||
+      file.mimetype === 'image/jpeg'
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+    }
+  };
 //App config  
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/public'));
+app.use('/image',express.static(__dirname + '/image'));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('image'))
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 app.use(flash());

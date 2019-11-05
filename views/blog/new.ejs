@@ -4,12 +4,12 @@
     <div style="border:none;" class="about">  
     <div class="contact-form">
         <h4>Make a New Post</h4>
-    <form action="/blog" method="POST">
+    <form action="/blog" method="POST" enctype="multipart/form-data">
         <div>
             <span><input type="text"  value="" name="title"  placeholder="Title" required/></span>
         </div>
         <div>
-            <span><input type="text" value="" name="image" placeholder="Image URL" /></span>
+            <span><input type="file" value="" name="image" placeholder="Upload Image" /></span>
         </div>
         <div>
             <span><textarea name="content" placeholder="content" required> </textarea></span>

@@ -5,18 +5,18 @@
         <div style="border:none;" class="about">  
         <div class="contact-form">
             <h4>Edit Post</h4>
-        <form action="/blog/<%=blog._id%>?_method=PUT" method="POST">
+        <form action="/blog/<%=blog._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
             <div>
-                <span><input type="text"   name="blog[title]"   value="<%= blog.title %>" required></span>
+                <span><input type="text"   name="title"   value="<%= blog.title %>" required></span>
             </div>
             <div>
-                <span><input type="text"  name="blog[name]"  value="<%= blog.image %>"  ></span>
+                <span><input type="text"  name="image"  ></span>
             </div>
             <div>
-                <span><textarea name="blog[title]"  placeholder="content" required> <%= blog.content%> </textarea></span>
+                <span><textarea name="content"  placeholder="content" required> <%= blog.content%> </textarea></span>
             </div>
             <div>
-                <span><input type="submit" value="Submit"></span>
+                <span><input type="submit" value="Update"></span>
             </div>
         </form>
         <br>

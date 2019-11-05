@@ -1,8 +1,15 @@
-var express   = require("express");
-var router    = express.Router();
-var passport      = require("passport");
-var User          = require("../db/models/user");
-var LocalStrategy   = require("passport-local").Strategy;
+const express   = require("express");
+const router    = express.Router();
+const passport      = require("passport");
+const User          = require("../db/models/user");
+const LocalStrategy   = require("passport-local").Strategy;
+const nodemailer     = require('nodemailer');
+const sendgridTransport = require('nodemailer-sendgrid-transport');
+const transporter = nodemailer.createTransport(sendgridTransport({
+    auth: {
+        api_key: ''
+    }
+}));
 
 
 
@@ -21,7 +28,7 @@ router.get("/register", function(req, res){
  });
  //handle sign up logic
  router.post("/register",function(req, res){
-     var newUser = new User({username: req.body.username});
+     const newUser = new User({username: req.body.username});
      User.register(newUser, req.body.password, function(err, user){
          if(err){ req.flash("success" , err.message);
             return res.render("register");

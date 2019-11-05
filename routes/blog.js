@@ -25,23 +25,26 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 router.post("/", middleware.isLoggedIn, function(req, res){
     req.body.content = req.sanitize(req.body.content)
     var title = req.body.title;
-    var image = req.body.image;
+    let images = req.file;
     var content = req.body.content;
     var author={
         id: req.user._id,
         username: req.user.username
     }
+    const image = images.path;
     var newBlogpost = { content:content, author:author, image:image, title:title}
     blog.create(newBlogpost, function(err, newBlog){
+        
         if(err){
             res.render("blog/new")
         } else{
             //redirect to index
+            
             res.redirect("/blog");
         }
     });
 })
-
+ 
 //Show Route
 router.get("/:id", function(req, res){
     blog.findById(req.params.id).populate("comment").exec(function(err, currentBlog){
@@ -53,22 +56,23 @@ router.get("/:id", function(req, res){
     })
 })
 //Edit Route
-router.get("/:id/edit", middleware.isAuthorised, function(req, res){
-    blog.findById(req.params.id, function(err, foundBlog){
-        res.render("blog/edit", {blog:foundBlog})
-    })
-})
+// router.get("/:id/edit", middleware.isAuthorised, function(req, res){
+//     blog.findById(req.params.id, function(err, foundBlog){
+//         res.render("blog/edit", {blog:foundBlog})
+//     })
+// })
 //Update Route
-router.put("/:id", middleware.isAuthorised, function(req,  res){
-    req.body.blog.body = req.sanitize(req.body.blog.body)
-    blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
-        if(err){
-            res.redirect("/blog")
-        }else{
-            res.redirect("/blog/" + req.params.id );
-        }
-    })
-})
+// router.put("/:id", middleware.isAuthorised, function(req,  res){
+//     console.log(req.body)
+//     req.body.blog.content = req.sanitize(req.body.blog.content)
+//     blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
+//         if(err){
+//             res.redirect("/blog")
+//         }else{
+//             res.redirect("/blog/" );
+//         }
+//     })
+// })
 
 //Delete route
 router.delete("/:id", middleware.isAuthorised, function( req, res){

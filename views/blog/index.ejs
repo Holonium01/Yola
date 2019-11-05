@@ -20,7 +20,7 @@
     <% blogs.forEach(function(blog){ %>						
         <div class="bloger-grid">						
             <div class="blog-img">
-                <img src="<%= blog.image %>" class="img">
+                <img src="/<%= blog.image %>" class="img">
             </div>
             <div class="bloger-content">
                 <h5><a href="/blog/<%= blog._id %>"><%=blog.title%></a></h5>
