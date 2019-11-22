@@ -15,7 +15,7 @@ mongoose.connect(mongodbUrl, {
         console.log(`connected to DB on ${mongodbUrl}`)
     })
     .catch((err) => {
-        console.log(`An error occured. could not connect to ${mongodbUrl}`)
+        console.log(`An error occured. could not connect to database in cloud. Check your internet connection`)
         console.log(err)
     });
 
