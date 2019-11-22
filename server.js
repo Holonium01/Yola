@@ -11,6 +11,7 @@ const express                 = require("express"),
     cookieParser            = require("cookie-parser"),
     app                     = express(),
     multer                  = require('multer'),
+    cloudinary              = require('cloudinary').v2,
     prod                    = require("./db/models/production")(app);
     
 
@@ -23,31 +24,31 @@ const commentRoutes    = require("./routes/comment"),
     mongoose = require('./db/mongoose');
 
 //setting up file storage
-const fileStorage = multer.diskStorage({
-    destination:(req, file, cb) => {
-        cb(null, 'image')
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.filename + '-' + file.originalname)
-    }
-});
-const fileFilter = (req, file, cb) => {
-    if (
-      file.mimetype === 'image/png' ||
-      file.mimetype === 'image/jpg' ||
-      file.mimetype === 'image/jpeg'
-    ) {
-      cb(null, true);
-    } else {
-      cb(null, false);
-    }
-  };
+// const fileStorage = multer.diskStorage({
+//     destination:(req, file, cb) => {
+//         cb(null, 'image')
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, file.filename + '-' + file.originalname)
+//     }
+// });
+// const fileFilter = (req, file, cb) => {
+//     if (
+//       file.mimetype === 'image/png' ||
+//       file.mimetype === 'image/jpg' ||
+//       file.mimetype === 'image/jpeg'
+//     ) {
+//       cb(null, true);
+//     } else {
+//       cb(null, false);
+//     }
+//   };
 //App config  
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/public'));
 app.use('/image',express.static(__dirname + '/image'));
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('image'))
+// app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('image'));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 app.use(flash());
@@ -77,6 +78,13 @@ app.use(function(req, res, next){
 app.use(indexRoutes);
 app.use("/blog", blogRoutes);
 app.use("/blog/:id/comment", commentRoutes);
+
+// Cloudinary setup
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+}); 
 
 // Clean up server when process exits
 process.on('exit', (code) => {

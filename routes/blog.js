@@ -1,9 +1,9 @@
 var express = require("express");
+var cloudinary = require('cloudinary').v2;
 var router  = express.Router();
 var blog    = require("../db/models/blog");
-var middleware = require("../middleware")
-
-
+var middleware = require("../middleware");
+const{parser} = require('../config/cloudinary');
 
 //Index Route
 router.get("/", function(req, res){
@@ -22,27 +22,37 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 });
 
 //Create Route
-router.post("/", middleware.isLoggedIn, function(req, res){
+router.post("/", middleware.isLoggedIn, parser.single('image'), function(req, res){
     req.body.content = req.sanitize(req.body.content)
     var title = req.body.title;
-    let images = req.file;
+    // let images = req.file;
+    let image = {};
     var content = req.body.content;
     var author={
         id: req.user._id,
         username: req.user.username
     }
-    const image = images.path;
-    var newBlogpost = { content:content, author:author, image:image, title:title}
-    blog.create(newBlogpost, function(err, newBlog){
+    // const image = images.path;
+cloudinary.uploader.upload(req.file.url, (err, res) =>{
+    if(err){
+        console.log(err)
+        res.redirect('back')
+    } else {
+        image.imageURL = req.file.url;
+        image.imageID = req.file.public_id;
+        var newBlogpost = { content:content, author:author, image:image, title:title}
+        blog.create(newBlogpost, function(err, newBlog){
         
         if(err){
             res.render("blog/new")
         } else{
-            //redirect to index
-            
+
+            //redirect to index 
             res.redirect("/blog");
         }
     });
+    }
+})    
 })
  
 //Show Route
