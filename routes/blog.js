@@ -26,29 +26,30 @@ router.post("/", middleware.isLoggedIn, parser.single('image'), function(req, re
     req.body.content = req.sanitize(req.body.content)
     var title = req.body.title;
     // let images = req.file;
-    let image = {};
+    let image;
     var content = req.body.content;
     var author={
         id: req.user._id,
         username: req.user.username
     }
     // const image = images.path;
-cloudinary.uploader.upload(req.file.url, (err, res) =>{
+cloudinary.uploader.upload(req.file.url, (err, response) =>{
     if(err){
         console.log(err)
         res.redirect('back')
     } else {
-        image.imageURL = req.file.url;
-        image.imageID = req.file.public_id;
+         let image = req.file.url;
         var newBlogpost = { content:content, author:author, image:image, title:title}
+        console.log(req.file)
         blog.create(newBlogpost, function(err, newBlog){
         
         if(err){
             res.render("blog/new")
+            console.log(err)
         } else{
-
-            //redirect to index 
-            res.redirect("/blog");
+            //redirect to index
+            console.log(image)
+            res.redirect('/blog')
         }
     });
     }

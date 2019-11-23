@@ -12,7 +12,7 @@ mongoose.connect(mongodbUrl, {
         reconnectInterval: 1000
     })
     .then(() => {
-        console.log(`connected to DB on ${mongodbUrl}`)
+        console.log(`connected to DB`)
     })
     .catch((err) => {
         console.log(`An error occured. could not connect to database in cloud. Check your internet connection`)
