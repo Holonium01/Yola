@@ -6,7 +6,7 @@
             <br>
             <% if(!currentUser){ %>
                 <p>
-                    <a class="btn btn-primary btn-large" href="/blog/new">Join the movement</a>
+                    <a class="btn btn-primary btn-large" href="/register">Join the movement</a>
                 </p>
             <% } else { %>
                 <p>
@@ -39,15 +39,11 @@
 			<div class="wrap">
 	<!-- DC Pagination:A3 Start -->
 						<ul class="dc_pagination dc_paginationA dc_paginationA03">
-						  <li><a href="#" class="first">First</a></li>
-						  <li><a href="#" class="previous">Previous</a></li>
-						  <li><a href="#">1</a></li>
-						  <li><a href="#">2</a></li>
-						  <li><a href="#" class="current">3</a></li>
-						  <li><a href="#">4</a></li>
-						  <li><a href="#">5</a></li>
-						  <li><a href="#" class="next">Next</a></li>
-						  <li><a href="#" class="last">Last</a></li>
+						  <li><a href="?page=1">1</a></li>
+						  <li><a href="?page=2">2</a></li>
+						  <li><a href="?page=3" class="current">3</a></li>
+						  <li><a href="?page=4">4</a></li>
+						  <li><a href="?page=5">5</a></li>
 						</ul>
 							<!-- DC Pagination:A3 End -->
 	    		<div class="clear"> </div>

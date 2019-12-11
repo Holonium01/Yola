@@ -11,8 +11,6 @@ const transporter = nodemailer.createTransport(sendgridTransport({
     }
 }));
 
-
-
 router.get("/", function(req, res){
     res.redirect("/blog");
 })

@@ -78,6 +78,9 @@ app.use(function(req, res, next){
 app.use(indexRoutes);
 app.use("/blog", blogRoutes);
 app.use("/blog/:id/comment", commentRoutes);
+app.use((req, res, next) =>{
+    res.status(404).send('Page not found');
+});
 
 // Cloudinary setup
 cloudinary.config({
@@ -105,8 +108,8 @@ process.on('uncaughtException', (err) => {
     mongoose.disconnect();
     process.exit(99)
 })
-
-let PORT = process.env.PORT || 3000;
+// process.env.PORT ||
+let PORT =  3000;
 app.listen(PORT, () => {
     console.log(process.env.WELCOME_MESSAGE)
 });

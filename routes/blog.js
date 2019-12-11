@@ -5,15 +5,19 @@ var blog    = require("../db/models/blog");
 var middleware = require("../middleware");
 const{parser} = require('../config/cloudinary');
 
+const postsPerPage = 3;
+let totalPost;
+
 //Index Route
 router.get("/", function(req, res){
+    const page = +req.query.page || 1;
     blog.find({}, function(err, blogs){
-        if(err){
-            console.log(err)
-        }else{
-            res.render("blog/index", {blogs:blogs});
-        }
-    });
+                    if(err){
+                        console.log(err)
+                    }else{
+                        res.render("blog/index", {blogs:blogs});
+                    }
+                }).skip((page -1) * postsPerPage).limit(postsPerPage );
 });
 
 //New
@@ -38,7 +42,7 @@ cloudinary.uploader.upload(req.file.url, (err, response) =>{
         console.log(err)
         res.redirect('back')
     } else {
-         let image = req.file.url;
+         let image = req.file.url; 
         var newBlogpost = { content:content, author:author, image:image, title:title}
         console.log(req.file)
         blog.create(newBlogpost, function(err, newBlog){
@@ -48,7 +52,6 @@ cloudinary.uploader.upload(req.file.url, (err, response) =>{
             console.log(err)
         } else{
             //redirect to index
-            console.log(image)
             res.redirect('/blog')
         }
     });
