@@ -3,8 +3,9 @@ A faceless social media
 
 ## Core Features
 * User Anonimity
-* CRUD
-* User Authentication
+* CRUD (for posts, comments and pictures)  
+* User Authentication and Authorization  
+* Cloudinary 
 
 ## Quick Access
 
